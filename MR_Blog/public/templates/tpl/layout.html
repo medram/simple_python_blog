@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+{% include "tpl/head.html" %}
+<body>
+	{% include "tpl/header.html" %}
+	
+	<main class="container">
+		{% include "tpl/messages.html" %}
+		
+		{% block content %}
+		{% endblock %}
+	</main>
+
+	{% include "tpl/footer.html" %}
+</body>
+</html>

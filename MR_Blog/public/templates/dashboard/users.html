@@ -1,0 +1,79 @@
+{% extends 'dashboard/tpl/dashboard-base.html' %}
+
+{% block content %}
+	<div class="row">
+		<div class="col-md-12">
+			<div class="box">
+			            <div class="box-header with-border">
+			              	<h3 class="box-title">All Users ({{ users.items | length }})</h3>
+			              	<div class="box-tools">
+			              		<form action="" method="GET">
+		                          	<div class="input-group input-group-sm hidden-xs" style="width: 150px;">
+		                            <input type="text" name="users_search" class="form-control pull-right" placeholder="Search">
+
+		                            	<div class="input-group-btn">
+		                              		<button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+		                            	</div>
+		                          	</div>
+		                        </form>
+	                       	</div>
+			            </div>
+			            <!-- /.box-header -->
+			            <div class="box-body no-padding">
+			              <table class="table table-striped">
+			                <tbody>
+				                <tr>
+				                  <th style="width: 10px">ID</th>
+				                  <th>Avatar</th>
+				                  <th>User</th>
+				                  <th>Role</th>
+				                  <th>Status</th>
+				                  <th>Registred</th>
+				                  <th style="width: 40px">Actions</th>
+				                </tr>
+				                {% if users.items %}
+					                {% for user in users.items %}
+					                	<tr>
+						                  <td>{{ user.id }}</td>
+						                  <td>
+						                  	<img src="{{ user.getProfileImg() }}" class="img-circle img-responsive" style="max-width: 45px;" alt='@{{ user.username }}'>
+						                  </td>
+						                  <td>
+						                  	<b>@{{ user.username }}</b><br>
+						                  	<small>{{ user.fname }} {{ user.lname }}</small>
+						                  </td>
+						                  <td>{{ user.getBadge() }}</td>
+						                  <td><span class="badge bg-{{ 'green' if user.status == 1 else 'red' }}">{{ 'Active' if user.status == 1 else 'Banned' }}</span></td>
+						                  <td>{{ user.created.strftime('%b %d, %Y %H:%I') }}</td>
+						                  <td>
+						                  	<a href="{{ url_for('dashboard_user', user_id=user.id) }}" class="btn btn-primary btn-sm"><i class="fa fa-pencil"></i> Edit</a>
+						                  </td>
+						                </tr>
+									{% endfor %}			                
+								{% else %}
+									<td colspan='7' style='text-align: center;'><b>No result</b></td>
+								{% endif %}
+			             	</tbody>
+			             </table>
+			            </div>
+			            <!-- /.box-body -->
+			            <div class="box-footer clearfix">
+			              <ul class="pagination pagination-sm no-margin pull-right">
+			                {% if users.has_prev %}
+			                	<li><a href="{{ url_for('dashboard_users', page=users.prev_num) }}">«</a></li>
+			                {% else %}
+			                	<li class="disabled"><a href="#">«</a></li>
+			                {% endif %}
+
+
+			                {% if users.has_next %}
+			                	<li><a href="{{ url_for('dashboard_users', page=users.next_num) }}">»</a></li>
+			                {% else %}
+			                	<li class="disabled"><a href="#">»</a></li>
+			                {% endif %}
+			              </ul>
+			            </div>
+			          </div>
+		</div>
+	</div>
+{% endblock %}

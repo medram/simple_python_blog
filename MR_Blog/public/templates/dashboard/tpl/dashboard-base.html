@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+{% include "dashboard/tpl/head.html" %}
+<body class="sidebar-mini skin-blue">
+	<div class="wrapper">
+
+
+		{% include "dashboard/tpl/header.html" %}
+		{% include "dashboard/tpl/aside.html" %}
+		
+		<div class="content-wrapper" style="min-height: 926px;">
+			{% if page_title %}
+				<section class="content-header">
+				      <h1>{{ page_title }}</h1>
+					<!--
+					<ol class="breadcrumb">
+						<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+						<li class="active">Dashboard</li>
+					</ol> -->	
+				</section>
+			{% endif %}
+			<section class="content">
+				{% include "dashboard/tpl/messages.html" %}
+				{% block content %}
+				{% endblock %}
+			</section>
+		</div>
+
+		{% include "dashboard/tpl/footer.html" %}
+	</div>
+</body>
+</html>

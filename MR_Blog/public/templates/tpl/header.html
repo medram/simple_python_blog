@@ -1,0 +1,34 @@
+<nav class="navbar navbar-expand navbar-dark bg-dark mb-5">	
+	<div class="container flex-column flex-md-row">
+		<a class="navbar-brand mr-0 mr-md-2 mr-md-auto" href="/">{{ getSetting('sitename') }}</a>
+
+		<ul class="navbar-nav flex-md-row">
+			<li class="nav-item">
+				<a class="nav-link" href="{{ url_for('home') }}">Home</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="{{ url_for('about') }}">About us</a>
+			</li>
+			{% if current_user.is_authenticated %}
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<b>{{ current_user.username }}</b>
+					</a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+						<a class="dropdown-item" href="{{ url_for('account') }}">Account</a>
+						<a class="dropdown-item" href="#">Profile</a>
+						<div class="dropdown-divider"></div>
+						<a class="dropdown-item" href="{{ url_for('logout') }}">Logout</a>
+					</div>
+				</li>
+			{% else %}
+				<li class="nav-item">
+					<a href="{{ url_for('login') }}" class="nav-link">Sign In</a>
+				</li>
+				<li class="nav-item">
+					<a href="{{ url_for('register') }}" class="btn btn-info">Sign Up</a>
+				</li>
+			{% endif %}
+		</ul>
+	</div>
+</nav>

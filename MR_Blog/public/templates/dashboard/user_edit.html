@@ -1,0 +1,107 @@
+{% extends 'dashboard/tpl/dashboard-base.html' %}
+
+{% block content %}
+<div class="row">
+	<div class="col-md-7">
+		<form action="" method="POST" enctype="multipart/form-data">
+			{{ form.hidden_tag() }}
+			<div class="box box-primary">
+				<div class="box-header with-border">
+					<h3 class="box-title">Profile</h3>
+				</div>
+				{% if message %}
+					<div class="box-body">
+						<div class="text-center">
+							<b>{{ message }}</b>
+						</div>
+					</div>
+				{% elif form %}
+					<div class="box-body">
+						<div class="row">
+							<div class="col-xs-3">
+								<img src="{{ user_to_edit.getProfileImg() }}" class="img-circle" width="130px" height="130px" alt="user image">
+							</div>
+							<div class="col-xs-9">
+								<h1>@{{ user_to_edit.username }}</h1>
+								<span class="badge bg-yellow">{{ user_to_edit.role.name }}</span>
+							</div>
+						</div>
+						<br>
+						<div class="row">
+							<div class="col-xs-6">
+									<div class="form-group {{ 'has-error' if form.fname.errors }}">
+
+									{{ form.fname.label(class='form-control-label') }}
+									{{ form.fname(class="form-control") }}
+									
+									{% if form.fname.errors %}
+										{% for error in form.fname.errors %}
+											<small class="help-block">{{ error }}</small>
+										{% endfor %}
+									{% endif %}
+									
+								</div>
+							</div>
+							<div class="col-xs-6">
+								<div class="form-group {{ 'has-error' if form.lname.errors }}">
+									{{ form.lname.label(class='form-control-label') }}
+									{{ form.lname(class="form-control") }}
+									
+									{% if form.lname.errors %}
+										{% for error in form.lname.errors %}
+											<small class="help-block">{{ error }}</small>
+										{% endfor %}
+									{% endif %}
+								</div>
+							</div>
+						</div>
+						<div class="form-group {{ 'has-error' if form.email.errors }}">
+							{{ form.email.label(class='form-control-label') }}
+							{{ form.email(class="form-control") }}
+							
+							{% if form.email.errors %}
+								{% for error in form.email.errors %}
+									<small class="help-block">{{ error }}</small>
+								{% endfor %}
+							{% endif %}
+						</div>
+						<div class="form-group {{ 'has-error' if form.profile.errors }}">
+							{{ form.profile.label() }}
+							{{ form.profile(class="form-control") }}
+
+							{% if form.profile.errors %}
+								{% for error in form.profile.errors %}
+									<small class="help-block">{{ error }}</small>
+								{% endfor %}
+							{% endif %}						
+						</div>
+						<div class="form-group {{ 'has-error' if form.status.errors }}">
+							{{ form.status() }}
+							{{ form.status.label() }}
+
+							{% if form.status.errors %}
+								{% for error in form.status.errors %}
+									<small class="help-block">{{ error }}</small>
+								{% endfor %}
+							{% endif %}
+						</div>
+						<div class="form-group {{ 'has-error' if form.roles.errors }}">
+							{{ form.roles.label() }}
+							{{ form.roles(class="form-control") }}
+
+							{% if form.roles.errors %}
+								{% for error in form.roles.errors %}
+									<small class="help-block">{{ error }}</small>
+								{% endfor %}
+							{% endif %}
+						</div>
+					</div>
+					<div class="box-footer">
+						{{ form.submit(class="btn btn-primary") }}
+					</div>
+				{% endif %}
+			</div>
+		</form>
+	</div>
+</div>
+{% endblock %}
