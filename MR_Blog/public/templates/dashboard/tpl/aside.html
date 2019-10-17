@@ -27,10 +27,10 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu tree" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
-        <li><a href="{{ url_for('dashboard') }}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
-        <li><a href="{{ url_for('dashboard_posts') }}"><i class="fa fa-file-o"></i> <span>Posts</span></a></li>
-        <li><a href="{{ url_for('dashboard_users') }}"><i class="fa fa-users"></i> <span>Users</span></a></li>
-        <li><a href="{{ url_for('dashboard_settings') }}"><i class="fa fa-gears"></i> <span>Settings</span></a></li>
+        <li><a href="{{ url_for('dashboard.index') }}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
+        <li><a href="{{ url_for('dashboard.posts') }}"><i class="fa fa-file-o"></i> <span>Posts</span></a></li>
+        <li><a href="{{ url_for('dashboard.users') }}"><i class="fa fa-users"></i> <span>Users</span></a></li>
+        <li><a href="{{ url_for('dashboard.settings') }}"><i class="fa fa-gears"></i> <span>Settings</span></a></li>
       </ul>
     </section>
     <!-- /.sidebar -->

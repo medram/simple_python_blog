@@ -46,7 +46,7 @@
 						                  <td><span class="badge bg-{{ 'green' if user.status == 1 else 'red' }}">{{ 'Active' if user.status == 1 else 'Banned' }}</span></td>
 						                  <td>{{ user.created.strftime('%b %d, %Y %H:%I') }}</td>
 						                  <td>
-						                  	<a href="{{ url_for('dashboard_user', user_id=user.id) }}" class="btn btn-primary btn-sm"><i class="fa fa-pencil"></i> Edit</a>
+						                  	<a href="{{ url_for('dashboard.user', user_id=user.id) }}" class="btn btn-primary btn-sm"><i class="fa fa-pencil"></i> Edit</a>
 						                  </td>
 						                </tr>
 									{% endfor %}			                
@@ -58,16 +58,25 @@
 			            </div>
 			            <!-- /.box-body -->
 			            <div class="box-footer clearfix">
-			              <ul class="pagination pagination-sm no-margin pull-right">
+			              <ul class="pagination pagination-md no-margin pull-right">
 			                {% if users.has_prev %}
-			                	<li><a href="{{ url_for('dashboard_users', page=users.prev_num) }}">«</a></li>
+			                	<li><a href="{{ url_for('dashboard.users', page=users.prev_num) }}">«</a></li>
 			                {% else %}
 			                	<li class="disabled"><a href="#">«</a></li>
 			                {% endif %}
 
+			                {% for page in users.iter_pages(left_edge=0, right_edge=0, left_current=2, right_current=3) %}
+			                	{% if page %}
+				                	{% if page == users.page %}
+				                		<li class="active"><a href="?page={{ page }}">{{ page }}</a></li>
+				                	{% else %}
+				                		<li><a href="?page={{ page }}">{{ page }}</a></li>
+				                	{% endif %}
+				                {% endif %}
+			                {% endfor %}
 
 			                {% if users.has_next %}
-			                	<li><a href="{{ url_for('dashboard_users', page=users.next_num) }}">»</a></li>
+			                	<li><a href="{{ url_for('dashboard.users', page=users.next_num) }}">»</a></li>
 			                {% else %}
 			                	<li class="disabled"><a href="#">»</a></li>
 			                {% endif %}

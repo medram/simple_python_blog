@@ -2,9 +2,11 @@ import os
 import hashlib
 import secrets
 from PIL import Image
-from MR_Blog import app, db
+from MR_Blog import db
 from MR_Blog.models import Setting
 from flask_login import current_user
+from flask import current_app
+
 
 def md5(string):
 	return hashlib.md5(str(string).encode()).hexdigest()
@@ -21,7 +23,7 @@ def save_profile_image(fileStorage, user=current_user):
 	_, f_type = os.path.splitext(fileStorage.filename)
 	token_hex = secrets.token_hex(16)
 	newFileName = f'{token_hex}{f_type}'
-	profiles_folder = os.path.join(app.root_path, 'static/imgs/profiles')
+	profiles_folder = os.path.join(current_app.root_path, 'static/imgs/profiles')
 	file_path = os.path.join(profiles_folder, newFileName)
 	size = (150, 150)
 
@@ -81,7 +83,7 @@ def getSetting(name, default=None):
 	return Settings.get(name, default)
 
 
-@app.context_processor
+@current_app.context_processor
 def tpl_getSetting():
 	''' make detSetting function available into flask templates! '''
-	return {'getSetting':getSetting}
+	return {'getSetting': getSetting}

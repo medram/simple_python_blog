@@ -1,9 +1,9 @@
 import os
 
 from datetime import datetime
-from MR_Blog import db, login_manager, app
+from MR_Blog import db, login_manager
 from flask_login import UserMixin
-from flask import url_for, Markup
+from flask import url_for, Markup, current_app
 
 class Comment(db.Model):
 
@@ -50,7 +50,7 @@ class User(db.Model, UserMixin):
 
 	def getProfileImg(self):
 		default_profile = 'default.png'
-		#profileURI = os.path.join(app.static_url_path, 'imgs/profiles', self.profile_img if self.profile_img else default_profile)
+		#profileURI = os.path.join(current_app.static_url_path, 'imgs/profiles', self.profile_img if self.profile_img else default_profile)
 		profileURI = url_for('static', filename=f'imgs/profiles/{(self.profile_img if self.profile_img else default_profile)}')
 		return profileURI
 

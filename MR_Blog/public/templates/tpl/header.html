@@ -4,10 +4,10 @@
 
 		<ul class="navbar-nav flex-md-row">
 			<li class="nav-item">
-				<a class="nav-link" href="{{ url_for('home') }}">Home</a>
+				<a class="nav-link" href="{{ url_for('main.home') }}">Home</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="{{ url_for('about') }}">About us</a>
+				<a class="nav-link" href="{{ url_for('main.about') }}">About us</a>
 			</li>
 			{% if current_user.is_authenticated %}
 				<li class="nav-item dropdown">
@@ -15,18 +15,18 @@
 					<b>{{ current_user.username }}</b>
 					</a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-						<a class="dropdown-item" href="{{ url_for('account') }}">Account</a>
+						<a class="dropdown-item" href="{{ url_for('member.account') }}">Account</a>
 						<a class="dropdown-item" href="#">Profile</a>
 						<div class="dropdown-divider"></div>
-						<a class="dropdown-item" href="{{ url_for('logout') }}">Logout</a>
+						<a class="dropdown-item" href="{{ url_for('main.logout') }}">Logout</a>
 					</div>
 				</li>
 			{% else %}
 				<li class="nav-item">
-					<a href="{{ url_for('login') }}" class="nav-link">Sign In</a>
+					<a href="{{ url_for('main.login') }}" class="nav-link">Sign In</a>
 				</li>
 				<li class="nav-item">
-					<a href="{{ url_for('register') }}" class="btn btn-info">Sign Up</a>
+					<a href="{{ url_for('main.register') }}" class="btn btn-info">Sign Up</a>
 				</li>
 			{% endif %}
 		</ul>

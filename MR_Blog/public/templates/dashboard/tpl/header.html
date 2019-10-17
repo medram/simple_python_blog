@@ -1,7 +1,7 @@
 <header class="main-header">
 
     <!-- Logo -->
-    <a href="{{ url_for('dashboard') }}" class="logo">
+    <a href="{{ url_for('dashboard.index') }}" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>{{ getSetting('sitename')[0:2] }}</b></span>
       <!-- logo for regular state and mobile devices -->
@@ -243,10 +243,10 @@
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="{{ url_for('dashboard_profile') }}" class="btn btn-default btn-flat">Profile</a>
+                  <a href="{{ url_for('dashboard.profile') }}" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
-                  <a href="{{ url_for('logout') }}" class="btn btn-default btn-flat">Sign out</a>
+                  <a href="{{ url_for('main.logout') }}" class="btn btn-default btn-flat">Sign out</a>
                 </div>
               </li>
             </ul>
