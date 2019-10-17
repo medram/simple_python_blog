@@ -28,11 +28,13 @@ def create_app():
 		from MR_Blog.dashboard.routes import dashboard 
 		from MR_Blog.main.routes import main 
 		from MR_Blog.member.routes import member
+		from MR_Blog.errors.handlers import errors
 
 		# register Blueprints
 		app.register_blueprint(main)
 		app.register_blueprint(dashboard)
 		app.register_blueprint(member)
+		app.register_blueprint(errors)
 
 	return app
 
